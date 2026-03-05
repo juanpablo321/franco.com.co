@@ -16,5 +16,5 @@
 - [x] Implement SEO: metadata, JSON-LD for organization and services
 - [x] Add sitemap.xml and robots.txt
 - [x] Write Vitest tests for contact form validation (12 tests passing)
-- [ ] Sync with Git remote: franco.com.co.git
+- [x] Sync with Git remote: franco.com.co.git (pushed to GitHub)
 - [ ] Deliver Contentful configuration guide to user
