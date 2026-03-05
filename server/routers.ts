@@ -2,9 +2,10 @@ import { COOKIE_NAME } from "@shared/const";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router } from "./_core/trpc";
+import { z } from "zod";
+import { getBlogPosts, getBlogPostBySlug, getBlogCategories } from "./contentful";
 
 export const appRouter = router({
-    // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
   system: systemRouter,
   auth: router({
     me: publicProcedure.query(opts => opts.ctx.user),
@@ -17,12 +18,35 @@ export const appRouter = router({
     }),
   }),
 
-  // TODO: add feature routers here, e.g.
-  // todo: router({
-  //   list: protectedProcedure.query(({ ctx }) =>
-  //     db.getUserTodos(ctx.user.id)
-  //   ),
-  // }),
+  blog: router({
+    list: publicProcedure
+      .input(
+        z.object({
+          category: z.string().optional(),
+          limit: z.number().min(1).max(50).optional(),
+          skip: z.number().min(0).optional(),
+          search: z.string().optional(),
+        }).optional()
+      )
+      .query(async ({ input }) => {
+        return getBlogPosts({
+          category: input?.category,
+          limit: input?.limit,
+          skip: input?.skip,
+          search: input?.search,
+        });
+      }),
+
+    bySlug: publicProcedure
+      .input(z.object({ slug: z.string() }))
+      .query(async ({ input }) => {
+        return getBlogPostBySlug(input.slug);
+      }),
+
+    categories: publicProcedure.query(async () => {
+      return getBlogCategories();
+    }),
+  }),
 });
 
 export type AppRouter = typeof appRouter;

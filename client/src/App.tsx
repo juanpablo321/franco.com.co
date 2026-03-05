@@ -10,6 +10,7 @@ import Blog from "./pages/Blog";
 import Contacto from "./pages/Contacto";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
+import BlogPost from "./pages/BlogPost";
 
 function Router() {
   return (
@@ -17,6 +18,7 @@ function Router() {
       <Route path={"/"} component={Home} />
       <Route path={"/sobre-mi"} component={SobreMi} />
       <Route path={"/blog"} component={Blog} />
+      <Route path={"/blog/:slug"} component={BlogPost} />
       <Route path={"/contacto"} component={Contacto} />
       <Route path={"/privacidad"} component={Privacy} />
       <Route path={"/terminos"} component={Terms} />

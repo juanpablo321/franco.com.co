@@ -17,4 +17,14 @@
 - [x] Add sitemap.xml and robots.txt
 - [x] Write Vitest tests for contact form validation (12 tests passing)
 - [x] Sync with Git remote: franco.com.co.git (pushed to GitHub)
-- [ ] Deliver Contentful configuration guide to user
+- [x] Deliver Contentful configuration guide to user
+
+## Closing Tasks
+- [x] Create .env.example with Contentful and environment variables (via webdev_request_secrets)
+- [x] Verify .gitignore excludes .env files (confirmed)
+- [x] Implement Contentful Rich Text renderer with styled components
+- [x] Support embedded images in Rich Text
+- [x] Configure dynamic SEO metadata for individual blog posts
+- [ ] Document Vercel Webhook instructions for Contentful
+- [x] Audit codebase for any residual brand references (clean - none found)
+- [ ] Final commit and push to GitHub
